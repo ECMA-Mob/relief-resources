@@ -22,8 +22,6 @@ const Layout = ({ children }) => {
           state
           authorName
           authorLink
-          remixAuthorName
-          remixAuthorLink
         }
       }
     }
@@ -45,13 +43,13 @@ const Layout = ({ children }) => {
             Gatsby
           </a>{" "}
           by{" "}
-          <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
-            {data.site.siteMetadata.authorName}
+          <a className="text-blue-600" href="https://twitter.com/gatsbyjs">
+            some Gatsby folks
           </a>
           .{" "}
           Remixed by
-          <a className="text-blue-600" href={data.site.siteMetadata.remixAuthorLink}>
-            {data.site.siteMetadata.remixAuthorName}
+          <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
+            {data.site.siteMetadata.authorName}
           </a>
           .{" "}
           <a className="text-blue-600" href="https://www.servicerelief.us/">

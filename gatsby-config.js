@@ -2,15 +2,14 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-module.exports = ({ authorName, authorLink, remixAuthorName, remixAuthorLink }) => {
+module.exports = ({ authorName, authorLink }) => {
   return {
     siteMetadata: {
       title: `${process.env.CITY} Relief Resources`,
       description: `A list of resources that ${process.env.CITY} residents can both utilize and donate to during and beyond this COVID-19 situation.`,
-      authorName: authorName || `@boborchard`,
-      authorLink: authorLink || `https://boborchard.com`,
-      remixAuthorName: remixAuthorName || `Henry Quinn`,
-      remixAuthorLink: remixAuthorLink || `https://henryneeds.coffee`,
+      authorName: `Henry Quinn`,
+      authorLink: `https://henryneeds.coffee`,
+      authorTwitter: `Quinncuatro`,
       state: process.env.STATE || `{STATE}`,
       city: process.env.CITY || `{CITY}`,
       formId: process.env.AIRTABLE_EMBED_ID
