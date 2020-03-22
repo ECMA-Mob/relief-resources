@@ -22,6 +22,8 @@ const Layout = ({ children }) => {
           state
           authorName
           authorLink
+          remixAuthorName
+          remixAuthorLink
         }
       }
     }
