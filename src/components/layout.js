@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
             some Gatsby folks
           </a>
           .{" "}
-          Remixed by
+          Remixed by{" "}
           <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
             {data.site.siteMetadata.authorName}
           </a>
