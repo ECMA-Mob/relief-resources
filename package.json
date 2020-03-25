@@ -25,5 +25,9 @@
     "gatsby": "^2.19.47",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1",
+    "dotenv": "^8.2.0"
   }
 }
