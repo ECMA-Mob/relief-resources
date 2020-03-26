@@ -69,14 +69,14 @@ const IndexPage = ({
             </h2>
             <ul className="list-disc pl-6 mt-4">
               {entitiesByCategory[category].map(entity => (
-                <li key={entity.data.BusinessName}>
+                <li key={entity.data.ResourceName}>
                   <a
                     className="underline"
                     href={entity.data.FundraiserUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {entity.data.BusinessName}
+                    {entity.data.ResourceName}
                   </a>{" "}
                   {entity.data.FundraiserDescription && (
                     <p className="mt-2 mb-2 italic">
@@ -105,7 +105,7 @@ export const indexQuery = graphql`
       nodes {
         data {
           Approved
-          BusinessName
+          ResourceName
           Category
           FundraiserDescription
           FundraiserUrl
