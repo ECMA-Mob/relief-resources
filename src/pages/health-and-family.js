@@ -2,8 +2,9 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Featured from "../components/featured";
 import Description from "../components/description";
+import NavBar from "../components/navbar";
+import Featured from "../components/featured";
 import { Link, graphql } from "gatsby";
 
 const IndexPage = ({
@@ -37,8 +38,9 @@ const IndexPage = ({
       <SEO title="Home" />
       <div className="mb-20">
         <Description city={site.siteMetadata.city} />
+        <NavBar />
         <p className="text-lg mb-8">
-          Jump to:{" "}
+          Jump to Section in Page:{" "}
           {categories.map((category, idx) => (
             <React.Fragment key={slugsByCategory[category]}>
               <a href={`#${slugsByCategory[category]}`} className="underline">
@@ -72,15 +74,15 @@ const IndexPage = ({
                 <li key={entity.data.ResourceName}>
                   <a
                     className="underline"
-                    href={entity.data.FundraiserUrl}
+                    href={entity.data.ResourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {entity.data.ResourceName}
                   </a>{" "}
-                  {entity.data.FundraiserDescription && (
+                  {entity.data.ResourceDescription && (
                     <p className="mt-2 mb-2 italic">
-                      {entity.data.FundraiserDescription}
+                      {entity.data.ResourceDescription}
                     </p>
                   )}
                 </li>
@@ -101,14 +103,15 @@ export const healthFamilyQuery = graphql`
         state
       }
     }
-    allAirtable(filter: { data: { Approved: { eq: "Yes" }, Category: { in: ["Faith", "Family & Children", "Health"] } } } ) {
+    allAirtable(filter: { data: { Approved: { eq: "Yes" }, PageCategory: { eq: "Health and Family" } } } ) {
       nodes {
         data {
           Approved
           ResourceName
           Category
-          FundraiserDescription
-          FundraiserUrl
+          PageCategory
+          ResourceDescription
+          ResourceUrl
         }
         fields {
           slug

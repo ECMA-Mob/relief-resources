@@ -2,8 +2,9 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Featured from "../components/featured";
 import Description from "../components/description";
+import NavBar from "../components/navbar";
+import Featured from "../components/featured";
 import { Link, graphql } from "gatsby";
 
 const IndexPage = ({
@@ -35,19 +36,9 @@ const IndexPage = ({
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="mb-20">
+      <NavBar />
+      <div className="mb-10">
         <Description city={site.siteMetadata.city} />
-        <p className="text-lg mb-8">
-          Jump to:{" "}
-          {categories.map((category, idx) => (
-            <React.Fragment key={slugsByCategory[category]}>
-              <a href={`#${slugsByCategory[category]}`} className="underline">
-                {category}
-              </a>
-              {idx !== categories.length - 1 && " | "}
-            </React.Fragment>
-          ))}
-        </p>
         <Link
           to="/submit"
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -57,6 +48,18 @@ const IndexPage = ({
       </div>
 
       <Featured />
+
+      <p className="text-lg mb-8">
+        Jump to Section on Page:{" "}
+        {categories.map((category, idx) => (
+          <React.Fragment key={slugsByCategory[category]}>
+            <a href={`#${slugsByCategory[category]}`} className="underline">
+              {category}
+            </a>
+            {idx !== categories.length - 1 && " | "}
+          </React.Fragment>
+        ))}
+      </p>
 
       <div className="mb-10">
         {categories.map(category => (
@@ -72,15 +75,15 @@ const IndexPage = ({
                 <li key={entity.data.ResourceName}>
                   <a
                     className="underline"
-                    href={entity.data.FundraiserUrl}
+                    href={entity.data.ResourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {entity.data.ResourceName}
                   </a>{" "}
-                  {entity.data.FundraiserDescription && (
+                  {entity.data.ResourceDescription && (
                     <p className="mt-2 mb-2 italic">
-                      {entity.data.FundraiserDescription}
+                      {entity.data.ResourceDescription}
                     </p>
                   )}
                 </li>
@@ -107,8 +110,8 @@ export const indexQuery = graphql`
           Approved
           ResourceName
           Category
-          FundraiserDescription
-          FundraiserUrl
+          ResourceDescription
+          ResourceUrl
         }
         fields {
           slug
