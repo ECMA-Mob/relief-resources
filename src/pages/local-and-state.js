@@ -3,13 +3,10 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Description from "../components/description";
-import NavBar from "../components/navbar";
-import Featured from "../components/featured";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
-const IndexPage = ({
+const LocalAndStatePage = ({
   data: {
-    site,
     allAirtable: { nodes: entities }
   }
 }) => {
@@ -35,31 +32,8 @@ const IndexPage = ({
 
   return (
     <Layout>
-      <SEO title="Home" />
-      <div className="mb-20">
-        <Description city={site.siteMetadata.city} />
-        <NavBar />
-        <p className="text-lg mb-8">
-          Jump to Section in Page:{" "}
-          {categories.map((category, idx) => (
-            <React.Fragment key={slugsByCategory[category]}>
-              <a href={`#${slugsByCategory[category]}`} className="underline">
-                {category}
-              </a>
-              {idx !== categories.length - 1 && " | "}
-            </React.Fragment>
-          ))}
-        </p>
-        <Link
-          to="/submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Suggest an addition &rarr;
-        </Link>
-      </div>
-
-      <Featured />
-
+      <SEO title="Local and State" />
+      <Description />
       <div className="mb-10">
         {categories.map(category => (
           <React.Fragment key={slugsByCategory[category]}>
@@ -121,4 +95,4 @@ export const localStateQuery = graphql`
   }
 `;
 
-export default IndexPage;
+export default LocalAndStatePage;
