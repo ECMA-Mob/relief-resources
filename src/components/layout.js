@@ -52,7 +52,7 @@ const Layout = ({ children }) => {
             {data.site.siteMetadata.authorName}
           </a>
           .{" "}
-          <a className="text-blue-600" href="https://www.servicerelief.us/">
+          <a className="text-blue-600" href="https://www.reliefresources.us/">
             Build one for your city.
           </a>
         </footer>

@@ -24,11 +24,6 @@ const Description = ({ location }) => {
     FeaturedHTML = null;
   }
 
-
-  
-
-  console.log(`NAVBARHTML: ${NavBarHTML}`)
-
   return (
     <div>
       <p className="text-lg mb-6">
