@@ -8,7 +8,7 @@ const NavBar = data => {
   let PageCategoriesSlugs = [];
 
   for (let i = 0; i < PageCategoriesList.length; i++) {
-    if (PageCategories.indexOf(PageCategoriesList[i].data.PageCategory) === -1) {
+    if (PageCategories.indexOf(PageCategoriesList[i].data.PageCategory) === -1 && PageCategoriesList[i].data.PageCategory !== "Donate and Volunteer") {
       PageCategories.push(PageCategoriesList[i].data.PageCategory);
     }
   }
@@ -20,7 +20,7 @@ const NavBar = data => {
  
   return (
     <p className="text-lg mb-8">
-      Resources By Category:{" "}
+      Filter by Category:{" "}
       {PageCategories.map((PageCategory) => (
         <span>
           <Link to={PageCategoriesSlugs[PageCategories.indexOf(PageCategory)]} className="underline">
@@ -52,7 +52,8 @@ export default () => (
             }
           }
         }
-    `}
+      `
+    }
     render={NavBar}
   />
 )
