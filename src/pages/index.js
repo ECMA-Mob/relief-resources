@@ -3,122 +3,27 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Description from "../components/description";
-import NavBar from "../components/navbar";
-import Featured from "../components/featured";
-import { Link, graphql } from "gatsby";
+import { Link } from "gatsby";
 
-const IndexPage = ({
-  data: {
-    site,
-    allAirtable: { nodes: entities }
-  }
-}) => {
-  const categories = [...new Set(entities.map(entity => entity.data.Category))];
-
-  const slugsByCategory = entities.reduce((categories, entity) => {
-    let category = entity.data.Category;
-    if (!categories[category]) {
-      categories[category] = entity.fields.slug;
-    }
-    return categories;
-  }, {});
-
-  const entitiesByCategory = entities.reduce((acc, entity) => {
-    let category = entity.data.Category;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-
-    acc[category].push(entity);
-    return acc;
-  }, {});
-
+const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <NavBar />
-      <div className="mb-10">
-        <Description city={site.siteMetadata.city} />
-        <Link
-          to="/submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          Suggest an addition &rarr;
-        </Link>
-      </div>
-
-      <Featured />
-
-      <p className="text-lg mb-8">
-        Jump to Section on Page:{" "}
-        {categories.map((category, idx) => (
-          <React.Fragment key={slugsByCategory[category]}>
-            <a href={`#${slugsByCategory[category]}`} className="underline">
-              {category}
-            </a>
-            {idx !== categories.length - 1 && " | "}
-          </React.Fragment>
-        ))}
-      </p>
-
-      <div className="mb-10">
-        {categories.map(category => (
-          <React.Fragment key={slugsByCategory[category]}>
-            <h2
-              id={slugsByCategory[category]}
-              className="text-xl font-bold mt-4"
-            >
-              {category}
-            </h2>
-            <ul className="list-disc pl-6 mt-4">
-              {entitiesByCategory[category].map(entity => (
-                <li key={entity.data.ResourceName}>
-                  <a
-                    className="underline"
-                    href={entity.data.ResourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {entity.data.ResourceName}
-                  </a>{" "}
-                  {entity.data.ResourceDescription && (
-                    <p className="mt-2 mb-2 italic">
-                      {entity.data.ResourceDescription}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </React.Fragment>
-        ))}
+      <Description location="home" />
+      <div className="mb-10 border shadow p-6">
+        <p className="mb-6">
+          <h2>If you're impacted in any way by COVID-19, please <Link to="/find-help" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          target="_blank"
+          rel="noopener noreferrer">Find Help</Link></h2>
+        </p>
+        <p>
+          <h2>If you're in a position to, please <Link to="/give-help" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          target="_blank"
+          rel="noopener noreferrer">Give Help</Link></h2>
+        </p>
       </div>
     </Layout>
   );
-};
-
-export const indexQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        city
-        state
-      }
-    }
-    allAirtable(filter: { data: { Approved: { eq: "Yes" } } }) {
-      nodes {
-        data {
-          Approved
-          ResourceName
-          Category
-          ResourceDescription
-          ResourceUrl
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
-`;
+};    
 
 export default IndexPage;
