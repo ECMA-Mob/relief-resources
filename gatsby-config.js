@@ -10,9 +10,9 @@ module.exports = ({ authorName, authorLink }) => {
       authorName: `Henry Quinn`,
       authorLink: `https://henryneeds.coffee`,
       authorTwitter: `Quinncuatro`,
-      state: process.env.STATE || `{STATE}`,
-      city: process.env.CITY || `{CITY}`,
-      formId: process.env.AIRTABLE_EMBED_ID
+      state: `${process.env.STATE}` || `{STATE}`,
+      city: `${process.env.CITY}` || `{CITY}`,
+      formId: `${process.env.AIRTABLE_EMBED_ID}`
     },
     plugins: [
       `gatsby-plugin-postcss`,
@@ -20,11 +20,11 @@ module.exports = ({ authorName, authorLink }) => {
       {
         resolve: `gatsby-source-airtable`,
         options: {
-          apiKey: process.env.AIRTABLE_API_KEY,
+          apiKey: `${process.env.AIRTABLE_API_KEY}`,
           tables: [
             {
-              baseId: process.env.AIRTABLE_BASE_ID,
-              tableName: process.env.AIRTABLE_TABLE_NAME
+              baseId: `${process.env.AIRTABLE_BASE_ID}`,
+              tableName: `${process.env.AIRTABLE_TABLE_NAME}`
             }
           ]
         }
